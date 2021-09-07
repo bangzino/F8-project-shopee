@@ -9,8 +9,6 @@ enum SortEnum {
   BestSeller = 'Bán Chạy'
 };
 
-
-
 @Component({
   selector: 'app-app-body',
   templateUrl: './app-body.component.html',
