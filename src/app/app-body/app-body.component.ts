@@ -6,7 +6,7 @@ import { ORDER_CONSTANT } from "../common/constant/app.constant";
 enum SortEnum {
   Relevancy = 'Phổ Biến',
   Newest = 'Mới Nhất',
-  BestSeller = 'Bán Chạy'
+  BestSeller = 'Bán Chạy' 
 };
 
 @Component({
