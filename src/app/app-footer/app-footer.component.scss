@@ -1,0 +1,123 @@
+@import '../../styles/nutshell';
+
+.footer {
+  
+  .footer__helps {
+    background-color: #FBFBFB;
+    .footer__heading {
+      margin: 40px 0 20px;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: $text-gray-color;
+  
+    }
+    .footer__list {
+      color: $text-gray-color;
+      font-size: 1.2rem;
+      .footer__list-item {
+        margin-bottom: 12px;
+       
+        }
+        .footer__list-link {
+          color: $text-gray-color;
+          font-weight: 500;
+          &:hover {
+            color: $color-secondary;
+  
+        }
+  
+      }
+    }
+    .footer__apps {
+      display: flex;
+      align-items: center;
+      .footer__apps-qrcode  {
+        .footer__apps-qrcode-img {
+          height: 86px;
+          border: 1px solid #ccc;
+          margin-right: 15px;
+        }
+      }
+      .footer__apps-download {
+        height: 86px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .footer__apps-download-img {
+          width: 80px;
+          height: 20px;
+        }
+      }
+    }
+  }
+  .footer__about {
+    background-color: #F5F5F5;
+    padding: 42px 0 12px;
+    .footer__about-wrapper {
+      margin: 0 auto;
+      width: 100%;
+      .footer__about-policy {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        .footer__about-policy-term {
+          padding: 0 25px;
+          border-right: 1px solid #ddd;
+          &:last-child {
+            border: none;
+          }
+          .footer__about-link {
+            font-size: 1.2rem;
+            color: $text-gray-color;
+          }
+        }
+      }
+      .footer__about-policy-registered {
+          text-align: center;
+        .footer__about-policy-registered-img {
+          width: 120px;
+        }
+      }
+      .footer__about-company-name {
+      font-size: 1.2rem;
+      text-align: center;
+      color: $text-gray-color;
+      margin: 8px 0 25px;
+
+      
+      }
+     
+    }
+  }
+  
+}
+/* Mobile */
+@media (max-width: 739px) { 
+  .footer {
+    .footer__helps {
+      padding-bottom: 15px;
+    }
+    .grid {
+      .row {
+        padding: 0 10px;
+        .footer__heading {
+          text-align: center;
+        }
+        .footer__list {
+          text-align: center;
+        }
+      }
+    }
+    .footer__about {
+      padding: 10px;
+    }
+    .footer__apps {
+      justify-content: center;
+    }
+  }
+}
+/* Tablet */ 
+@media (min-width: 740px) and (max-width: 1023px) {
+  
+}

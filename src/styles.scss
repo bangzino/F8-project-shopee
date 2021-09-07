@@ -1,0 +1,116 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/font-awesome/scss/font-awesome.scss';
+@import './styles/nutshell';
+@import './styles/normalize.min.css';
+@import './styles/css2.css';
+
+* {
+  box-sizing: inherit;
+}
+html {
+  margin: 0;
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  .fw-strong {
+    font-weight: 600;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+    color: $color-primary;
+  }
+}
+// .grid {
+//   width: 1200px;
+//   max-width: 100%;
+//   margin: 0 auto;
+// }
+// .grid__full-width {
+//   width: 100%;
+// }
+// .grid__row {
+//   display: flex;
+//   flex-wrap: wrap;
+//   margin-left: -5px;
+//   margin-right: -5px;
+// }
+// /*Test*/
+
+// .grid__column-2 {
+//   padding-left: 5px;
+//   padding-right: 5px;
+//   width: 16.6667%;
+// }
+// .grid__column-2-4 {
+//   padding-left: 5px;
+//   padding-right: 5px;
+//   width: 20%;
+// }
+// .grid__column-10 {
+//   padding-left: 5px;
+//   padding-right: 5px;
+//   width: 83.3333%;
+// }
+
+.btn {
+  height: 36px;
+  min-width: 124px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 1.4rem;
+  padding: 0;
+  background-color: $white;
+}
+
+.btn-primary {
+  color: $white;
+  background-color: $color-secondary;
+  
+}
+/*Selection*/ 
+.select-input {
+  height: 34px;
+  padding: 0 15px;
+  border-radius: 2px;
+  background-color: $white;
+  min-width: 210px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .select-input__title {
+    font-size: 1.4rem;
+    
+  }
+  .select-input__list {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    width: 210px;
+    background-color: $white;
+    padding: 10px 15px;
+    border-radius: 2px;
+    box-shadow: 0px 1px 2px #e0e0e0;
+    //display: none;
+    .select-input__item {
+      height: 34px;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+
+.footer__infor {
+  font-size: 1.2rem;
+  text-align: center;
+  color: $text-gray-color;
+  margin-top: 8px;
+}

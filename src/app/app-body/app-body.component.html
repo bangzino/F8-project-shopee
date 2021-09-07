@@ -1,0 +1,218 @@
+<app-app-header (valueFromInput)="receiveSearchTerm($event)" ></app-app-header> 
+<div class="wrapper__container">
+  <div class="grid wide">
+    <div class="row wrapper__content">
+      <div class="col l-3 m-0 c-0">
+        <nav class="category">
+          <h3 class="category__heading"><i class="fa fa-list" aria-hidden="true"></i>
+            Danh mục</h3>
+          <ul class="category__list">
+            <!-- category__item--active -->
+            <li class="category__item" *ngFor="let category of shopeeCategoryData">
+              <button [class.category__item--active]="catId == category.catid" (click)="onChangeCatid(category.catid)" class="category-link ">
+                {{category.display_name}} 
+              </button>
+              <span class="category__unselect" *ngIf="catId == category.catid" (click)="unselectCategory(category.catid)" title="Unselect this category">x</span>
+            </li>    
+          </ul>
+        </nav> 
+      </div>
+      <div class="col l-9 m-12 c-12" >
+        <div class="searchResult" *ngIf="searchTerm?.trim()"><i class="fa fa-info-circle"></i>Kết quả tìm kiếm cho từ khoá '<red-color>{{searchTerm}}</red-color>' </div>
+        <div class="home-filter hide-on-mobile-tablet">
+          <span class="home-filter__label">Sắp xếp theo</span>
+          <button
+            *ngFor="let sort of sortTypeData"
+            (click)="sortItems(sort.sortValue)" 
+            [class.btn-primary]="sort.sortValue == sortValue" 
+            class="home-filter__btn btn">
+            {{sort.displayName}}
+          </button>
+          <div class="select-input">
+            <span
+              *ngIf="sortValue != priceSortValue" 
+              class="select-input__title">Giá
+            </span>
+            <span 
+              [class.secondaryColor]="sortValue == priceSortValue"
+              *ngIf="sortValue == priceSortValue && order == orderConstants.Asc" 
+              class="select-input__title">
+              Giá: Từ thấp đến cao
+            </span>
+            <span 
+              [class.secondaryColor]="sortValue == priceSortValue" 
+              *ngIf="sortValue == priceSortValue && order == orderConstants.Desc" 
+              class="select-input__title">
+              Giá: Từ cao đến thấp
+            </span>
+            <i class="select-input__icon fa fa-chevron-down" aria-hidden="true"></i>
+            <!--List price option-->
+            <ul class="select-input__list">
+              <li class="select-input__item">
+                <div href="" (click)="sortItems(priceSortValue, orderConstants.Asc)" class="select-input__link">Giá: Từ thấp đến cao</div>
+                <i *ngIf="sortValue == priceSortValue && order == orderConstants.Asc" class="select-input__item-icon fa fa-check"></i>
+              </li>
+              <li class="select-input__item">
+                <div href="" (click)="sortItems(priceSortValue, orderConstants.Desc)" class="select-input__link">Giá: Từ cao đến thấp</div> 
+                <i *ngIf="sortValue == priceSortValue && order == orderConstants.Desc" class="select-input__item-icon fa fa-check"></i>
+              </li>
+            </ul>
+            <!-- <div>{{categoryData[0].catid}}</div> -->
+          </div>
+
+          <div class="home-filter__page">
+            <div class="home-filter__page-num">
+              <span class="home-filter__page-current">{{currentPage}}</span>/{{pagesCount}}
+            </div>
+            <div class="home-filter__page-control">
+              <a (click)="changePageNumber(currentPage - 1)" class="home-filter__page-btn" [class.home-filter__page-btn--disabled]="currentPage == 1"><i class="fa home-filter__page-icon fa-chevron-left" aria-hidden="true"></i>
+              </a>
+              <a [class.home-filter__page-btn--disabled]="currentPage == pagesCount" (click)="changePageNumber(currentPage + 1)" class="home-filter__page-btn"><i class="fa home-filter__page-icon fa-chevron-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <ul class="home-category-scrollbar">
+          <li class="category-scrollbar-item" *ngFor="let item of shopeeCategoryData">
+            <a href="" class="category-scrollbar-link">{{item.display_name}} </a>
+          </li>
+        </ul>
+        <div class="home-product" *ngIf="!isLoading">
+          <div class="row"> 
+            <div class="col l-3 m-4 c-6" *ngFor="let item of shopeeData">
+              <!--Product Item-->
+              <a href="">
+                <div class="home-product-item">
+                  <div class="home-product-item__img" style="background-image: url({{item.image}}) "></div>
+                  <h4 class="home-product-item__name">{{item.name}}</h4>
+                  <div class="home-product-item__price">
+                    <div
+                      class="home-product-item__price-condition" 
+                      *ngIf="item.price_before_discount > 0; else currentPrice" >
+                      <div class="home-product-item__price-old">
+                        {{item.price_before_discount | currency:'VND':''}}₫
+                      </div>
+                      <span class="price-space">
+                        -
+                      </span>
+                      <div  class="home-product-item__price-current">
+                        {{item.price | currency:'JPY':''}}₫
+                      </div>
+                    </div>
+                    
+                    <ng-template #currentPrice>
+                      <div  class="home-product-item__price-current">
+                        {{item.price | currency:'JPY':'' }}₫
+                      </div>
+                    </ng-template>
+                  </div>
+                  <div class="home-product-item__action">
+                      <i [class.home-product-item__action-heart-clicked]="itemId == item.itemId" (click)="setLiked(item.itemId);false" class="home-product-item__action-heart fa fa-heart" aria-hidden="true"></i>
+                    <div class="home-product-item__action-star">
+                      <i  *ngFor="let i of starArray" 
+                        class="fa fa-star"
+                        [class.home-product-item__action-star-gold]="item.rating >= i"
+                        [class.home-product-item__action-star-none]="item.rating < i" aria-hidden="true">
+                      </i>
+                    </div>
+                    <div class="home-product-item__action-sold">{{item.historical_sold | summary}} đã bán</div>
+                  </div>
+                  <div class="home-product-item__origin">
+                    <span class="home-product-item__origin-brand">{{item.brand}}</span>
+                    <span class="home-product-item__origin-country">{{item.shop_location}}</span>
+                  </div>
+                  <div class="home-product-item__favorite">
+                    <i class="home-product-item__favorite-icon fa fa-check" aria-hidden="true"></i>
+                    <span class="home-product-item__favorite-label">Yêu thích</span>
+                  </div>
+                  <div *ngIf="item.discount != null" class="home-product-item__sale" >
+                    <div class="home-product-item__sale-percent" >{{item.discount}}</div>
+                    <div class="home-product-item__sale-label" >GIẢM</div>
+                  </div>
+                </div>
+              </a>
+              
+            </div>
+           
+          </div>
+        </div>
+        <ul class="pagination home-product__pagination">
+          <li class="pagination-item ">
+            <a 
+              class="pagination-item__link" 
+              [class.pagination-item__disabled]="currentPage == 1"
+              (click)="changePageNumber(currentPage-1)">
+              <i class="pagination-item__icon fa fa-chevron-left"></i>
+            </a>
+          </li>
+          <div class="pagination-item-number" *ngIf="true">
+            <span 
+              (click)="changePageNumber(1)"
+              *ngIf="currentPage > 3"
+              class="pagination-pageNumber pageNumber-with-effect">
+              1
+            </span>
+            <span 
+              *ngIf="currentPage > 4 "
+              class="pagination-pageNumber">
+              ...
+            </span>
+            <span 
+              (click)="changePageNumber(currentPage - 2)"
+              *ngIf="currentPage > 2 && currentPage < 5"
+              class="pagination-pageNumber pageNumber-with-effect">
+              {{currentPage -2}}
+            </span>
+            <span 
+              (click)="changePageNumber(currentPage - 1)"
+              *ngIf="currentPage > 1 "
+              class="pagination-pageNumber pageNumber-with-effect">
+              {{currentPage -1}}
+            </span>
+            <span 
+              (click)="changePageNumber(currentPage)"
+              class="pagination-pageNumber pageNumber-with-effect pagination-item--active">
+              {{currentPage}}
+            </span>
+            <span 
+              (click)="changePageNumber(currentPage +1)"
+              *ngIf="currentPage < pagesCount"
+              class="pagination-pageNumber pageNumber-with-effect">
+              {{currentPage + 1}}
+            </span>
+            <span 
+              *ngIf="currentPage < pagesCount - 3"
+              class="pagination-pageNumber">
+              ...
+            </span>
+            <span 
+              (click)="changePageNumber(currentPage +2)"
+              *ngIf="currentPage < pagesCount - 2 && currentPage > pagesCount - 4 "
+              class="pagination-pageNumber pageNumber-with-effect">
+              {{currentPage + 2}}
+            </span>
+            <span 
+              (click)="changePageNumber(pagesCount)"
+              *ngIf="currentPage < pagesCount - 1"
+              class="pagination-pageNumber pageNumber-with-effect">
+              {{pagesCount}}
+            </span>
+          </div>
+          <li class="pagination-item">
+            <a 
+              class="pagination-item__link"
+              [class.pagination-item__disabled]="currentPage == pagesCount"
+              (click)="changePageNumber(currentPage+1)">
+              <i class="pagination-item__icon fa fa-chevron-right"></i>
+            </a>
+          </li>
+          <!-- {{values}} -->
+        </ul>  
+      </div>
+      
+    </div>
+  </div>
+  <span *ngIf="showMoveToTop" (click)="scrollToTop($event)">
+    <img class="scrollToTop" src="./../../assets/img/pngwing.com.png" alt="">
+  </span>
+</div>

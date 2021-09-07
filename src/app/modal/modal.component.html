@@ -1,0 +1,82 @@
+<div class="modal" *ngIf="closeModal">
+  <div class="modal__overlay"></div>
+  <div class="modal__body">
+      <!-- Authenticate -->
+    <div class="modal__inner" *ngIf="formSwitch" >
+      <div class="inner__main">
+        <div class="inner__header">
+          <!-- <h3 class="inner__heading">Đăng ký</h3> -->
+          <span class="inner__switch-btn" (click)="switch()">Đăng nhập</span>
+        </div>
+        <div class="inner__main-container">
+          <div class="inner__form" >
+            <div class="inner__input-group">
+              <input class="inner__input" type="text" placeholder="Tên đăng nhập">
+            </div>
+            <div class="inner__input-group">
+              <input class="inner__input" type="text" placeholder="Nhập mật khẩu">
+            </div>
+            <div class="inner__input-group">
+              <input class="inner__input" type="text" placeholder="Nhập lại mật khẩu">
+            </div>
+          </div>
+          <div class="inner__policy">
+            <span>Bằng việc đăng ký bạn đã đồng ý với Bangzino Store về
+              <a class="inner__policy-link" href="">Điều khoản dịch vụ</a> & 
+              <a class="inner__policy-link" href="">Chính sách bảo mật</a>
+            </span>
+            
+          </div>
+          <div class="inner__footer">
+            <button class="btn btn-cancel " >TRỞ LẠI</button>
+            <button class="btn btn-primary" >ĐĂNG KÍ</button>
+          </div>
+        </div>
+      </div>
+      <div class="inner__socials">
+        <button class="btn-fb btn "><i class="fa fa-facebook-official" aria-hidden="true"></i>
+          <span class="inner__socials-text">Kết nối với Facebook</span> </button>
+        <button class="btn-gg btn"><i class="fa fa-google" aria-hidden="true"></i>
+          <span class="inner__socials-text">Kết nối với Google</span>
+          </button>
+      </div>
+    </div>
+    <div class="modal__inner" *ngIf="!formSwitch" >
+      <div class="inner__main">
+        <div class="inner__header">
+          <!-- <h3 class="inner__heading">Đăng ký</h3> -->
+          <span class="inner__switch-btn" (click)="switch()">Đăng kí</span>
+        </div>
+        <div class="inner__main-container">
+          <div class="inner__form">
+            <div class="inner__input-group">
+              <input class="inner__input" type="text" placeholder="Tên đăng nhập">
+            </div>
+            <div class="inner__input-group">
+              <input class="inner__input" type="text" placeholder="Nhập mật khẩu">
+            </div>
+          </div>
+          <div class="inner__policy">
+            <span>
+              <a class="inner__policy-link" href="">Quên mật khẩu</a> &nbsp; | &nbsp;
+            </span>
+            <span>
+              <a class="inner__policy-link" href="">Cần trợ giúp</a>
+            </span>        
+          </div>
+          <div class="inner__footer">
+            <button class="btn btn-primary" (click)="close()" >ĐĂNG NHẬP</button>
+          </div>
+        </div>
+      </div>
+      <div class="inner__socials">
+        <button class="btn-fb btn "><i class="fa fa-facebook-official" aria-hidden="true"></i>
+          <span class="inner__socials-text">Kết nối với Facebook</span> </button>
+        <button class="btn-gg btn"><i class="fa fa-google" aria-hidden="true"></i>
+          <span class="inner__socials-text">Kết nối với Google</span>
+          </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  -->

@@ -1,0 +1,13 @@
+$white: #ffffff;
+$color-primary: #222;
+$color-secondary: #fa533d;
+$main-background-color: #F5F5F5;
+$font-primary: 1.3rem;
+$star-gold-color: #FFCE3D;
+$border-color: #d9d9d9;
+$navbar-height: 34px;
+$header-height: 120px;
+$header-height-without-navbar: calc(#{$header-height} - #{$navbar-height});
+$search-height: calc(#{$header-height} - #{$navbar-height});
+$text-gray-color: rgba($color: #000000, $alpha: 0.65);
+$sort-bar-height: 46px;
