@@ -366,7 +366,7 @@
           cursor: default;
           z-index: 1;
           display: none;
-         // max-width: 100vw;
+          min-width: 300px;
           &::after {
             content: "";
             position: absolute;

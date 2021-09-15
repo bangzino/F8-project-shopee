@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,9 @@ export class LoginComponent implements OnInit {
   formSwitch = false;
   closeModal = true;
 
-  constructor() { }
+  constructor(private router:Router) {
+    //this.router.navigate(['/login']);
+   }
 
   ngOnInit(): void {
   }

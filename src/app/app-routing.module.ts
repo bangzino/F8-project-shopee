@@ -4,6 +4,11 @@ import { AppBodyComponent } from './app-body/app-body.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
+  { 
+    path: '', 
+    redirectTo: 'main', 
+    pathMatch: 'full' 
+  },
   {
     path: 'login',
     component: LoginComponent,
